@@ -1,5 +1,5 @@
 /*
-ofxDS18B20 - 1-wire interface to DS18B20 temperature sensor for RaspberryPi
+DS18B20 - 1-wire interface to DS18B20 temperature sensor for RaspberryPi
 Copyright (c) 2015, Produce Consume Robot
 All rights reserved.
 
@@ -33,10 +33,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <iomanip>
 #include <vector>
 
-class ofxDS18B20 
+class DS18B20 
 {
 	public:
-		ofxDS18B20();							// Constructor
+		DS18B20();							// Constructor
 		int listDevices();						// Lists the DS18B20 and returns the number found
 		float read(int deviceNumber);			// Reads the temperature value from the specified device
 		std::string getName(int deviceNumber);		// Returns the name of the specified device

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxDS18B20.h"
+#include "DS18B20.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -19,6 +19,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		ofxDS18B20 tempSensor;
+		DS18B20 tempSensor;
 		int nSensors;
 };

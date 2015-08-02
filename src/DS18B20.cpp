@@ -1,13 +1,13 @@
-#include "ofxDS18B20.h"
+#include "DS18B20.h"
 
 //---------------------------------------------------//
-// ofxDS18B20 constructor
+// DS18B20 constructor
 //---------------------------------------------------// 
-ofxDS18B20::ofxDS18B20()
+DS18B20::DS18B20()
 {
 	_devicesDir = "/sys/bus/w1/devices/";
 	
-	// Look in the devices directory for ofxDS18B20 devices
+	// Look in the devices directory for DS18B20 devices
 	ofDirectory dir(_devicesDir);
 	if (dir.exists() && dir.isDirectory()) { // if the directory exists
 		// Get the files
@@ -17,13 +17,13 @@ ofxDS18B20::ofxDS18B20()
 			// Get the file names
 			string fileName = files.at(j).getFileName();
 			if (fileName.substr(0,3).compare("28-") == 0) {
-				// ofxDS18B20 device dirs start with 28-
+				// DS18B20 device dirs start with 28-
 				_deviceNames.push_back(fileName);
 			}
 		}		
 	} else {
 		// _devicesDir doesn't exist :-(
-		ofLog(OF_LOG_ERROR, "ofxDS18B20: Directory " + _devicesDir + " missing");
+		ofLog(OF_LOG_ERROR, "DS18B20: Directory " + _devicesDir + " missing");
 	}	
 	return;
 }
@@ -32,7 +32,7 @@ ofxDS18B20::ofxDS18B20()
 // listDevices
 // Lists the devices found
 //---------------------------------------------------//
-int ofxDS18B20::listDevices()
+int DS18B20::listDevices()
 {
 	for (unsigned int j=0; j<_deviceNames.size(); j++) {
 		cout << "[" << j << "] - " << _deviceNames.at(j) << endl;
@@ -44,7 +44,7 @@ int ofxDS18B20::listDevices()
 // read
 // Reads the temperature value from the specified device
 //---------------------------------------------------//
-float ofxDS18B20::read(int deviceNumber)
+float DS18B20::read(int deviceNumber)
 {
 	if (deviceNumber < _deviceNames.size()) { 
 		// Look for the specified device data file
@@ -63,15 +63,15 @@ float ofxDS18B20::read(int deviceNumber)
 				temp = temp / 1000;
 				return temp;
 			} else {
-				ofLogWarning() << "ofxDS18B20: Data missing for " << deviceNumber;
+				ofLogWarning() << "DS18B20: Data missing for " << deviceNumber;
 				return -1;
 			}
 		} else {
-			ofLogError() << "ofxDS18B20: Device " << deviceNumber << " not found";
+			ofLogError() << "DS18B20: Device " << deviceNumber << " not found";
 			return -1;
 		}
 	} else {
-		ofLogError() << "ofxDS18B20: Device " << deviceNumber << " not found";
+		ofLogError() << "DS18B20: Device " << deviceNumber << " not found";
 		return -1;
 	}
 	return -1;
@@ -81,12 +81,12 @@ float ofxDS18B20::read(int deviceNumber)
 // getDeviceName
 // Get the name of the specified device
 //---------------------------------------------------//
-string ofxDS18B20::getName(int deviceNumber)
+string DS18B20::getName(int deviceNumber)
 {
 	if (deviceNumber < _deviceNames.size()) {
 		return _deviceNames.at(deviceNumber);
 	} else {
-		ofLogError() << "ofxDS18B20: Device " << deviceNumber << " not found";
+		ofLogError() << "DS18B20: Device " << deviceNumber << " not found";
 	}
 	return "";
 }
