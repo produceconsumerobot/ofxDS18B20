@@ -5,12 +5,17 @@ Setup:
 Configure your hardware (see links below)
 
 sudo nano /boot/config.txt
+
 Add to the end of the file:
+
 dtoverlay=w1-gpio
 
 sudo nano /etc/modules
+
 Add to the end of the file:
+
 w1-gpio
+
 w1-therm
 
 Reboot
