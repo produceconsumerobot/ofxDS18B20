@@ -3,6 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	nSensors = tempSensor.listDevices();
+	if (nSensors == 0) {
+		cout << "No DS18B20 sensors found." << endl;
+	}
 }
 
 //--------------------------------------------------------------

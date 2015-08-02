@@ -58,7 +58,7 @@ float ofxDS18B20::read(int deviceNumber)
 			int pos = dataStr.find("t=");	// Find the start of the temp data
 			if (pos > 0 && (pos+7 < dataStr.size())) {
 				// Check that the temp data was found
-				string data = dataStr.substr(pos+2, pos+7); // Extract the temp data
+				string data = dataStr.substr(pos+2, 5); // Extract the temp data
 				float temp = atoi(data.c_str());
 				temp = temp / 1000;
 				return temp;
